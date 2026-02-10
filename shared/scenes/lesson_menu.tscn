@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba26qg2k0dhn6"]
+
+[ext_resource type="Script" uid="uid://dmkow06ch7ut4" path="res://shared/scripts/lesson_menu.gd" id="1_vv3m4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqk5r"]
+bg_color = Color(0.13333334, 0.13333334, 0.16862746, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uqk5r"]
+font_size = 36
+
+[node name="LessonMenu" type="Control" node_paths=PackedStringArray("tg_label", "ct_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vv3m4")
+tg_label = NodePath("MainVBox/HeaderVBox/SubtitleLabel")
+ct_label = NodePath("MainVBox/HeaderVBox2/CodeTitleLabel")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uqk5r")
+
+[node name="MainVBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -151.0
+offset_right = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="HeaderVBox" type="VBoxContainer" parent="MainVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="MainVBox/HeaderVBox"]
+layout_mode = 2
+text = "Qwest"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="MainVBox/HeaderVBox"]
+layout_mode = 2
+text = "Godot Exercises 00"
+label_settings = SubResource("LabelSettings_uqk5r")
+horizontal_alignment = 1
+
+[node name="HeaderVBox2" type="VBoxContainer" parent="MainVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="CodeTitleLabel" type="Label" parent="MainVBox/HeaderVBox2"]
+layout_mode = 2
+text = "Validation Code:"
+horizontal_alignment = 1
+
+[node name="CodeLabel" type="Label" parent="MainVBox/HeaderVBox2"]
+layout_mode = 2
+text = "984740"
+label_settings = SubResource("LabelSettings_uqk5r")
+horizontal_alignment = 1
+
+[node name="LocaleOptionButton" type="OptionButton" parent="MainVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "Francais"
+popup/item_1/id = 1
+
+[connection signal="item_selected" from="MainVBox/LocaleOptionButton" to="." method="_on_locale_option_button_item_selected"]
